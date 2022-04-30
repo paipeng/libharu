@@ -42,3 +42,4 @@ cmake_install.cmake
 depcomp
 build/
 demo/text_demo/x64/
+demo/font_demo/x64/
