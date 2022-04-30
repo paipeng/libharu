@@ -40,3 +40,5 @@ CPackConfig.cmake
 CPackSourceConfig.cmake
 cmake_install.cmake
 depcomp
+build/
+demo/text_demo/x64/
