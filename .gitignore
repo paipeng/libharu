@@ -43,3 +43,5 @@ depcomp
 build/
 demo/text_demo/x64/
 demo/font_demo/x64/
+demo/ttfont_demo/x64/
+demo/ttfont_demo_jp/x64/
