@@ -131,10 +131,12 @@ int main (int argc, char **argv)
     //font = HPDF_GetFont (pdf, "SimSun", "GB-EUC-H");
     font = HPDF_GetFont(pdf, "SimHei,BoldItalic", "GB-EUC-H");
 #else
-    HPDF_UseUTFEncodings(pdf);
-    HPDF_SetCurrentEncoder(pdf, "UTF-8");
-    const char* font_name = HPDF_LoadTTFontFromFile(pdf, "C:\\Users\\paipeng\\git\\libharu\\demo\\build\\x64\\Debug\\ttfonts\\PenguinAttack.ttf", HPDF_TRUE);
-    font = HPDF_GetFont(pdf, font_name, "UTF-8");
+    HPDF_UseCNSFonts(pdf);
+    HPDF_UseCNSEncodings(pdf);
+    //HPDF_UseUTFEncodings(pdf);
+    //HPDF_SetCurrentEncoder(pdf, "GB-EUC-H");
+    const char* font_name = HPDF_LoadTTFontFromFile(pdf, "C:\\Users\\paipeng\\git\\libharu\\demo\\ttfont\\FZQTJW.TTF", HPDF_TRUE);
+    font = HPDF_GetFont(pdf, font_name, "GB-EUC-H");
 #endif
     
     /* add a new page object. */
