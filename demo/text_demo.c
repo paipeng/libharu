@@ -123,13 +123,19 @@ int main (int argc, char **argv)
     HPDF_UseCNTFonts(pdf);
     HPDF_UseCNTEncodings(pdf);
 #endif
+
+#if 0
+    /* create default-font */
     HPDF_UseCNSFonts(pdf);
     HPDF_UseCNSEncodings(pdf);
-
-
-    /* create default-font */
     //font = HPDF_GetFont (pdf, "SimSun", "GB-EUC-H");
-    font = HPDF_GetFont(pdf, "SimHei", "GB-EUC-H");
+    font = HPDF_GetFont(pdf, "SimHei,BoldItalic", "GB-EUC-H");
+#else
+    HPDF_UseUTFEncodings(pdf);
+    HPDF_SetCurrentEncoder(pdf, "UTF-8");
+    const char* font_name = HPDF_LoadTTFontFromFile(pdf, "C:\\Users\\paipeng\\git\\libharu\\demo\\build\\x64\\Debug\\ttfonts\\PenguinAttack.ttf", HPDF_TRUE);
+    font = HPDF_GetFont(pdf, font_name, "UTF-8");
+#endif
     
     /* add a new page object. */
     page = HPDF_AddPage (pdf);
