@@ -128,8 +128,9 @@ int main (int argc, char **argv)
 
 
     /* create default-font */
-    font = HPDF_GetFont (pdf, "SimSun", "GB-EUC-H");
-
+    //font = HPDF_GetFont (pdf, "SimSun", "GB-EUC-H");
+    font = HPDF_GetFont(pdf, "SimHei", "GB-EUC-H");
+    
     /* add a new page object. */
     page = HPDF_AddPage (pdf);
 
