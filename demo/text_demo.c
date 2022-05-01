@@ -119,8 +119,16 @@ int main (int argc, char **argv)
     /* set compression mode */
     HPDF_SetCompressionMode (pdf, HPDF_COMP_ALL);
 
+#if 0
+    HPDF_UseCNTFonts(pdf);
+    HPDF_UseCNTEncodings(pdf);
+#endif
+    HPDF_UseCNSFonts(pdf);
+    HPDF_UseCNSEncodings(pdf);
+
+
     /* create default-font */
-    font = HPDF_GetFont (pdf, "Helvetica", NULL);
+    font = HPDF_GetFont (pdf, "SimSun", "GB-EUC-H");
 
     /* add a new page object. */
     page = HPDF_AddPage (pdf);
@@ -244,7 +252,7 @@ int main (int argc, char **argv)
                 "RenderingMode=PDF_FILL");
     HPDF_Page_SetTextRenderingMode (page, HPDF_FILL);
     HPDF_Page_BeginText (page);
-    HPDF_Page_TextOut (page, 60, ypos, "ABCabc123");
+    HPDF_Page_TextOut (page, 60, ypos, "ABCabc123 ≈Ì≈»");
     HPDF_Page_EndText (page);
 
     /* PDF_STROKE */
