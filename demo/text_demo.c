@@ -133,10 +133,11 @@ int main (int argc, char **argv)
 #else
     HPDF_UseCNSFonts(pdf);
     HPDF_UseCNSEncodings(pdf);
-    //HPDF_UseUTFEncodings(pdf);
-    //HPDF_SetCurrentEncoder(pdf, "GB-EUC-H");
+    
+    HPDF_UseUTFEncodings(pdf);
+    HPDF_SetCurrentEncoder(pdf, "UTF-8");
     const char* font_name = HPDF_LoadTTFontFromFile(pdf, "C:\\Users\\paipeng\\git\\libharu\\demo\\ttfont\\FZQTJW.TTF", HPDF_TRUE);
-    font = HPDF_GetFont(pdf, font_name, "GB-EUC-H");
+    font = HPDF_GetFont(pdf, font_name, "UTF-8");
 #endif
     
     /* add a new page object. */
