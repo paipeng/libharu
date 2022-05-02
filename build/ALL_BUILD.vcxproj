@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{683DD92B-300B-36C0-9299-502783AF1DDF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\paipeng\git\zlib;C:\Users\paipeng\git\libpng;C:\Users\paipeng\git\libharu\include;C:\Users\paipeng\git\libharu\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\paipeng\git\zlib;C:\Users\paipeng\git\libpng;C:\Users\paipeng\git\libharu\include;C:\Users\paipeng\git\libharu\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\paipeng\git\zlib;C:\Users\paipeng\git\libpng;C:\Users\paipeng\git\libharu\include;C:\Users\paipeng\git\libharu\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\paipeng\git\zlib;C:\Users\paipeng\git\libpng;C:\Users\paipeng\git\libharu\include;C:\Users\paipeng\git\libharu\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\paipeng\git\libharu\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/paipeng/git/libharu/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/paipeng/git/libharu -BC:/Users/paipeng/git/libharu/build --check-stamp-file C:/Users/paipeng/git/libharu/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.23\Templates\CPackConfig.cmake.in;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeRCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeSystem.cmake;C:\Users\paipeng\git\libharu\cmake\modules\haru.cmake;C:\Users\paipeng\git\libharu\cmake\modules\summary.cmake;C:\Users\paipeng\git\libharu\include\hpdf_config.h.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\paipeng\git\libharu\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/paipeng/git/libharu/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/paipeng/git/libharu -BC:/Users/paipeng/git/libharu/build --check-stamp-file C:/Users/paipeng/git/libharu/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.23\Templates\CPackConfig.cmake.in;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeRCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeSystem.cmake;C:\Users\paipeng\git\libharu\cmake\modules\haru.cmake;C:\Users\paipeng\git\libharu\cmake\modules\summary.cmake;C:\Users\paipeng\git\libharu\include\hpdf_config.h.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\paipeng\git\libharu\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/paipeng/git/libharu/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/paipeng/git/libharu -BC:/Users/paipeng/git/libharu/build --check-stamp-file C:/Users/paipeng/git/libharu/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.23\Templates\CPackConfig.cmake.in;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeRCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeSystem.cmake;C:\Users\paipeng\git\libharu\cmake\modules\haru.cmake;C:\Users\paipeng\git\libharu\cmake\modules\summary.cmake;C:\Users\paipeng\git\libharu\include\hpdf_config.h.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\paipeng\git\libharu\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/paipeng/git/libharu/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/paipeng/git/libharu -BC:/Users/paipeng/git/libharu/build --check-stamp-file C:/Users/paipeng/git/libharu/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.23\Templates\CPackConfig.cmake.in;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeRCCompiler.cmake;C:\Users\paipeng\git\libharu\build\CMakeFiles\3.23.1\CMakeSystem.cmake;C:\Users\paipeng\git\libharu\cmake\modules\haru.cmake;C:\Users\paipeng\git\libharu\cmake\modules\summary.cmake;C:\Users\paipeng\git\libharu\include\hpdf_config.h.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\paipeng\git\libharu\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\ZERO_CHECK.vcxproj">
+      <Project>{B53F3F0E-79C6-3B91-B147-479EA2FB0D8C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\arc_demo.vcxproj">
+      <Project>{64B0EA1F-02E0-36E1-AD68-EC20ED5FCE01}</Project>
+      <Name>arc_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\character_map.vcxproj">
+      <Project>{1DCB3CBC-E3D8-3F2B-BE0F-886BCB9F5156}</Project>
+      <Name>character_map</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\chfont_demo.vcxproj">
+      <Project>{57C550A9-ADD5-3D6C-985B-47E8F7E2BFA5}</Project>
+      <Name>chfont_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\encoding_list.vcxproj">
+      <Project>{B3F4D6E2-A24D-36D1-BB11-AA3667CB680E}</Project>
+      <Name>encoding_list</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\encryption.vcxproj">
+      <Project>{35A83025-6077-39CF-BB57-ED7F277D5D11}</Project>
+      <Name>encryption</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\ext_gstate_demo.vcxproj">
+      <Project>{DC82116F-1DA5-3613-ADD8-1F79673A449A}</Project>
+      <Name>ext_gstate_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\font_demo.vcxproj">
+      <Project>{C3E94A9D-223B-37D9-A57F-B3ED16C20AA1}</Project>
+      <Name>font_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\grid_sheet.vcxproj">
+      <Project>{3005227B-84C2-3025-A42A-2E99B8771E92}</Project>
+      <Name>grid_sheet</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\image_demo.vcxproj">
+      <Project>{595CA7E4-AD3A-35EA-9D61-BBE2D7B1931D}</Project>
+      <Name>image_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\jpeg_demo.vcxproj">
+      <Project>{0594D33F-F068-30F3-9D79-623BFB26D577}</Project>
+      <Name>jpeg_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\jpfont_demo.vcxproj">
+      <Project>{5656A2D7-1B61-3F57-BFE9-983A58979BA0}</Project>
+      <Name>jpfont_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\src\libhpdf.vcxproj">
+      <Project>{C555E83E-D813-3C9D-942C-AA832D7D8F35}</Project>
+      <Name>libhpdf</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\src\libhpdfs.vcxproj">
+      <Project>{F3CB4A83-F303-3EB0-B7A5-83D0795FB04E}</Project>
+      <Name>libhpdfs</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\line_demo.vcxproj">
+      <Project>{C021390E-FED4-3684-983C-E1F7F94E5729}</Project>
+      <Name>line_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\link_annotation.vcxproj">
+      <Project>{5E91D6C6-EB5C-35D6-B66D-1D5AF3C4B78A}</Project>
+      <Name>link_annotation</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\make_rawimage.vcxproj">
+      <Project>{593BA3D7-D396-3EE9-8EEB-6E7A6F7C1AB1}</Project>
+      <Name>make_rawimage</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\outline_demo.vcxproj">
+      <Project>{F5065171-32E9-324F-A996-88AB58B2D6EA}</Project>
+      <Name>outline_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\permission.vcxproj">
+      <Project>{8951A9F7-457A-3556-A497-EFA3588ACFD2}</Project>
+      <Name>permission</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\png_demo.vcxproj">
+      <Project>{6A091C0F-E03A-3F9D-992D-14F8B2714798}</Project>
+      <Name>png_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\raw_image_demo.vcxproj">
+      <Project>{C3C78E7D-3E30-3255-977C-CC32DF90A780}</Project>
+      <Name>raw_image_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\slide_show_demo.vcxproj">
+      <Project>{BF3A0EEF-3C8D-353F-857A-422C6651E783}</Project>
+      <Name>slide_show_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\text_annotation.vcxproj">
+      <Project>{23278C7F-C117-3003-8662-AB71A49742BA}</Project>
+      <Name>text_annotation</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\text_demo.vcxproj">
+      <Project>{8BE0B580-C1A8-3FD0-89D3-4AD468A8A411}</Project>
+      <Name>text_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\text_demo2.vcxproj">
+      <Project>{6A38102E-59D3-370F-A3AF-A86897814AB6}</Project>
+      <Name>text_demo2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\ttfont_demo.vcxproj">
+      <Project>{17ACBE5F-0F8C-3840-BAA5-9580408A9916}</Project>
+      <Name>ttfont_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\paipeng\git\libharu\build\demo\ttfont_demo_jp.vcxproj">
+      <Project>{BE068E39-5AF0-3FBD-822E-A3C0BEEA848E}</Project>
+      <Name>ttfont_demo_jp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
