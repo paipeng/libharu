@@ -11,13 +11,15 @@
  * It is provided "as is" without express or implied warranty.
  *
  */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <setjmp.h>
+
 #include "hpdf.h"
+
+//#include <windows.h>
 
 #ifndef HPDF_NOPNGLIB
 
@@ -97,8 +99,13 @@ int main (int argc, char **argv)
     double iw;
     double ih;
 
+    //WCHAR Buffer[MAX_PATH];
+    //DWORD dwRet;
+    //dwRet = GetCurrentDirectory(MAX_PATH, Buffer);
     strcpy (fname, argv[0]);
     strcat (fname, ".pdf");
+
+
 
     pdf = HPDF_New (error_handler, NULL);
     if (!pdf) {
@@ -137,30 +144,30 @@ int main (int argc, char **argv)
     #ifndef __WIN32__
     image = HPDF_LoadPngImageFromFile (pdf, "pngsuite/basn3p02.png");
     #else
-    image = HPDF_LoadPngImageFromFile (pdf, "pngsuite\\basn3p02.png");
+    image = HPDF_LoadPngImageFromFile (pdf, "C:\\pngsuite\\basn3p02.png");
     #endif
 
     /* image1 is masked by image2. */
     #ifndef __WIN32__
-    image1 = HPDF_LoadPngImageFromFile (pdf, "pngsuite/basn3p02.png");
+    image1 = HPDF_LoadPngImageFromFile (pdf, "../pngsuite/basn3p02.png");
     #else
-    image1 = HPDF_LoadPngImageFromFile (pdf, "pngsuite\\basn3p02.png");
+    image1 = HPDF_LoadPngImageFromFile (pdf, "C:\\pngsuite\\basn3p02.png");
     #endif
 
     /* image2 is a mask image. */
     #ifndef __WIN32__
-    image2 = HPDF_LoadPngImageFromFile (pdf, "pngsuite/basn0g01.png");
+    image2 = HPDF_LoadPngImageFromFile (pdf, "../pngsuite/basn0g01.png");
     #else
-    image2 = HPDF_LoadPngImageFromFile (pdf, "pngsuite\\basn0g01.png");
+    image2 = HPDF_LoadPngImageFromFile (pdf, "C:\\pngsuite\\basn0g01.png");
     #endif
 
     /* image3 is a RGB-color image. we use this image for color-mask
      * demo.
      */
     #ifndef __WIN32__
-    image3 = HPDF_LoadPngImageFromFile (pdf, "pngsuite/maskimage.png");
+    image3 = HPDF_LoadPngImageFromFile (pdf, "../pngsuite/maskimage.png");
     #else
-    image3 = HPDF_LoadPngImageFromFile (pdf, "pngsuite\\maskimage.png");
+    image3 = HPDF_LoadPngImageFromFile (pdf, "C:\\pngsuite\\maskimage.png");
     #endif
 
     iw = HPDF_Image_GetWidth (image);
