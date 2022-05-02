@@ -172,6 +172,9 @@
     <ClCompile Include="C:\Users\paipeng\git\libharu\src\hpdf_encoder_utf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\hpdf_doc_bmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\paipeng\git\libharu\src\CMakeLists.txt" />

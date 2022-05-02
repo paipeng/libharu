@@ -313,6 +313,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\hpdf_doc_bmp.c" />
     <ClCompile Include="C:\Users\paipeng\git\libharu\src\hpdf_annotation.c" />
     <ClCompile Include="C:\Users\paipeng\git\libharu\src\hpdf_array.c" />
     <ClCompile Include="C:\Users\paipeng\git\libharu\src\hpdf_binary.c" />
