@@ -50,11 +50,13 @@ draw_image (HPDF_Doc     pdf,
 
     HPDF_Page page = HPDF_GetCurrentPage (pdf);
     HPDF_Image image;
-
+#if 0
     strcpy(filename1, "images");
     strcat(filename1, FILE_SEPARATOR);
     strcat(filename1, filename);
-
+#else
+    strcpy(filename1, filename);
+#endif
     image = HPDF_LoadJpegImageFromFile (pdf, filename1);
 
     /* Draw image to the canvas. */
@@ -117,9 +119,9 @@ int main (int argc, char **argv)
 
     HPDF_Page_SetFontAndSize (page, font, 12);
 
-    draw_image (pdf, "rgb.jpg", 70, HPDF_Page_GetHeight (page) - 410,
+    draw_image (pdf, "C:\\pngsuite\\rgb.jpg", 70, HPDF_Page_GetHeight (page) - 410,
                 "24bit color image");
-    draw_image (pdf, "gray.jpg", 340, HPDF_Page_GetHeight (page) - 410,
+    draw_image (pdf, "C:\\pngsuite\\gray.jpg", 340, HPDF_Page_GetHeight (page) - 410,
                 "8bit grayscale image");
 
     /* save the document to a file */
