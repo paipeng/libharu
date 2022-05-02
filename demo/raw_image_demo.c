@@ -19,6 +19,8 @@
 #include <setjmp.h>
 #include "hpdf.h"
 
+#include <windows.h>
+
 jmp_buf env;
 
 #ifdef HPDF_DLL
@@ -64,8 +66,13 @@ int main (int argc, char **argv)
 
     HPDF_REAL x, y;
 
+    char Buffer[MAX_PATH];
+    DWORD dwRet;
+    dwRet = GetCurrentDirectory(MAX_PATH, Buffer);
+
     strcpy (fname, argv[0]);
     strcat (fname, ".pdf");
+
 
     pdf = HPDF_New (error_handler, NULL);
     if (!pdf) {
@@ -101,7 +108,7 @@ int main (int argc, char **argv)
     image = HPDF_LoadRawImageFromFile (pdf, "rawimage/32_32_rgb.dat",
             32, 32, HPDF_CS_DEVICE_RGB);
     #else
-    image = HPDF_LoadRawImageFromFile (pdf, "rawimage\\32_32_rgb.dat",
+    image = HPDF_LoadRawImageFromFile (pdf, "..\\..\\demo\\rawimage\\32_32_rgb.dat",
             32, 32, HPDF_CS_DEVICE_RGB);
     #endif
 
@@ -116,7 +123,7 @@ int main (int argc, char **argv)
     image = HPDF_LoadRawImageFromFile (pdf, "rawimage/32_32_gray.dat",
             32, 32, HPDF_CS_DEVICE_GRAY);
     #else
-    image = HPDF_LoadRawImageFromFile (pdf, "rawimage\\32_32_gray.dat",
+    image = HPDF_LoadRawImageFromFile (pdf, "..\\..\\demo\\rawimage\\32_32_gray.dat",
             32, 32, HPDF_CS_DEVICE_GRAY);
     #endif
 
