@@ -218,6 +218,11 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
         size = bitmapInfoHeader.imageWidth * (bitmapInfoHeader.bitsPerPixel / 8) * bitmapInfoHeader.imageHeight;
     }
 
+    // read header until pixelData
+    len = sizeof(unsigned char) * (pixelDataOffset - sizeof(BitmapFileHeader) - sizeof(BitmapInfoHeader));
+    buf = (unsigned char*)malloc(len);
+    ret = HPDF_Stream_Read(bmp_data, buf, &len);
+    free(buf);
 
     data = malloc(sizeof(unsigned char) * size);
 
@@ -226,9 +231,6 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
         // sizeof(BitmapInfoHeader)
         // xxx pixelDataOffset - 14 - sizeof(BitmapInfoHeader)
         // read until pixelDataOffset
-        len = sizeof(unsigned char) * (pixelDataOffset - sizeof(BitmapFileHeader) - sizeof(BitmapInfoHeader));
-        buf = (unsigned char*)malloc(len);
-        ret = HPDF_Stream_Read(bmp_data, buf, &len);
 
         len = bitmapInfoHeader.imageWidth * (bitmapInfoHeader.bitsPerPixel / 8);
         for (i = bitmapInfoHeader.imageHeight-1; i >=0 ; i--) {
@@ -262,7 +264,6 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
             return NULL;
         
     }
-    free(buf);
     free(data);
     
         // read grayscale images

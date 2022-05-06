@@ -53,7 +53,7 @@ draw_image (HPDF_Doc     pdf,
     HPDF_Page page = HPDF_GetCurrentPage (pdf);
     HPDF_Image image;
 
-    strcpy(filename1, "pngsuite");
+    strcpy(filename1, "C:\\pngsuite");
     strcat(filename1, FILE_SEPARATOR);
     strcat(filename1, filename);
 
@@ -107,10 +107,15 @@ int main (int argc, char **argv)
 
     /* add a new page object. */
     page = HPDF_AddPage (pdf);
-
+#if 0
     HPDF_Page_SetWidth (page, 550);
     HPDF_Page_SetHeight (page, 650);
-
+#else
+    HPDF_Page_SetSize(page, HPDF_PAGE_SIZE_A4, HPDF_PAGE_PORTRAIT);
+#endif
+    double pageWidth = HPDF_Page_GetWidth(page);
+    double pageHeight = HPDF_Page_GetHeight(page);
+    printf("pdf A4 page size: %f-%f\n", pageWidth, pageHeight);
     dst = HPDF_Page_CreateDestination (page);
     HPDF_Destination_SetXYZ (dst, 0, HPDF_Page_GetHeight (page), 1);
     HPDF_SetOpenAction(pdf, dst);
@@ -122,6 +127,9 @@ int main (int argc, char **argv)
     HPDF_Page_EndText (page);
 
     HPDF_Page_SetFontAndSize (page, font, 12);
+
+    draw_image(pdf, "code.bmp", 300, HPDF_Page_GetHeight(page) - 550,
+        "code bmp");
 
     draw_image (pdf, "basn0g01.png", 100, HPDF_Page_GetHeight (page) - 150,
                 "1bit grayscale.");
