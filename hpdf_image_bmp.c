@@ -177,11 +177,16 @@ HPDF_Image_LoadBmpImage(HPDF_MMgr        mmgr,
 
 static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp_data, HPDF_BOOL delayed_loading) {
     HPDF_STATUS ret = HPDF_OK;
-    int width, height;
     int bit_depth, color_type;
+    unsigned char* buf = NULL, *data = NULL;
     BitmapInfoHeader bitmapInfoHeader;
-
+    HPDF_UINT size;
     int len = sizeof(BitmapInfoHeader);
+    int row_size, i, j;//, pos = 0;
+    int padding = 0;
+    char padding_buf[8];
+    size_t read_size;
+
     HPDF_PTRACE((" HPDF_Image_LoadBmpImage\n"));
 
     ret = HPDF_Stream_Read(bmp_data, &bitmapInfoHeader, &len);
@@ -197,8 +202,52 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
 
     if (HPDF_Dict_AddNumber(image, "BitsPerComponent", 8) != HPDF_OK)
         return NULL;
+
+    if (bitmapInfoHeader.bitsPerPixel == 1 || bitmapInfoHeader.bitsPerPixel == 8) {
+        size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight;
+    }
+    else {
+        size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight * (bitmapInfoHeader.bitsPerPixel/8);
+    }
+
+    if (bitmapInfoHeader.bitsPerPixel > 1) {
+        if (HPDF_Stream_WriteToStream(bmp_data, image->stream, 0, NULL) != HPDF_OK)
+            return NULL;
+    }
+    else { // 1bit
+        buf = (unsigned char*)malloc(row_size);
+        data = malloc(sizeof(unsigned char) * bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight);
+        for (i = 0; i < bitmapInfoHeader.imageHeight; i++) {
+            ret = HPDF_Stream_Read(bmp_data, buf, &row_size);
+            for (j = 0; j < bitmapInfoHeader.imageWidth; j++) {
+                data[(bitmapInfoHeader.imageHeight - i - 1) * bitmapInfoHeader.imageWidth + j] = (1 - ((buf[j / 8] >> (7 - j % 8)) & 0x01)) * 0xFF;
+            }
+        }
+
+        if (HPDF_Stream_WriteToStream(bmp_data, image->stream, 0, NULL) != HPDF_OK)
+            return NULL;
+        free(buf);
+        free(data);
+    }
+
+    
+        // read grayscale images
 #if 0
-    if (HPDF_Stream_WriteToStream(raw_data, image->stream, 0, NULL) != HPDF_OK)
+        else if (bitmapInfoHeader.bitsPerPixel == 1) {
+            printf("w: %d\n", row_size);
+            
+            for (i = 0; i < bitmapInfoHeader.imageHeight; i++) {
+                read_size = fread(&buf[0], 1, row_size, f);
+                for (j = 0; j < bitmapInfoHeader.imageWidth; j++) {
+                    mat->data[bitmapInfoHeader.imageHeight - i - 1][j] = (1 - ((buf[j / 8] >> (7 - j % 8)) & 0x01)) * 0xFF;
+                }
+            }
+            free(buf);
+        }
+    }
+
+
+    if (HPDF_Stream_WriteToStream(bmp_data, image->stream, 0, NULL) != HPDF_OK)
         return NULL;
 
     if (image->stream->size != size) {
