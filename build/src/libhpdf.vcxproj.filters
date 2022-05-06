@@ -175,6 +175,9 @@
     <ClCompile Include="..\..\src\hpdf_doc_bmp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\hpdf_image_bmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\paipeng\git\libharu\src\CMakeLists.txt" />

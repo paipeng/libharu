@@ -91,6 +91,12 @@ HPDF_STATUS
 HPDF_Image_SetRenderingIntent  (HPDF_Image   image,
                                 const char* intent);
 
+
+HPDF_Image
+HPDF_Image_LoadBmpImage(HPDF_MMgr        mmgr,
+    HPDF_Stream      bmp_data,
+    HPDF_Xref        xref,
+    HPDF_BOOL        delayed_loading);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

@@ -786,6 +786,8 @@ HPDF_LoadPngImageFromFile2 (HPDF_Doc      pdf,
                             const char    *filename);
 
 
+HPDF_EXPORT(HPDF_Image) HPDF_LoadBmpImageFromFile(HPDF_Doc pdf, const char* filename);
+
 HPDF_EXPORT(HPDF_Image)
 HPDF_LoadJpegImageFromFile (HPDF_Doc      pdf,
                             const char    *filename);

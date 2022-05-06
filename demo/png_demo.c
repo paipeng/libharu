@@ -57,7 +57,11 @@ draw_image (HPDF_Doc     pdf,
     strcat(filename1, FILE_SEPARATOR);
     strcat(filename1, filename);
 
-    image = HPDF_LoadPngImageFromFile (pdf, filename1);
+    if (strstr(filename, ".bmp")) {
+        image = HPDF_LoadBmpImageFromFile(pdf, filename1);
+    } else {
+        image = HPDF_LoadPngImageFromFile(pdf, filename1);
+    }
 
     /* Draw image to the canvas. */
     HPDF_Page_DrawImage (page, image, x, y, HPDF_Image_GetWidth (image),

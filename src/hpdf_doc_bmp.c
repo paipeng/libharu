@@ -132,7 +132,7 @@ LoadBmpImageFromStream(HPDF_Doc      pdf,
 
     HPDF_PTRACE((" HPDF_LoadBmpImageFromStream\n"));
 
-    image = HPDF_Image_LoadPngImage(pdf->mmgr, imagedata, pdf->xref,
+    image = HPDF_Image_LoadBmpImage(pdf->mmgr, imagedata, pdf->xref,
         delayed_loading);
 
     if (image && (pdf->compression_mode & HPDF_COMP_IMAGE))
