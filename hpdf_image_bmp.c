@@ -9,6 +9,10 @@
 #include <stdio.h>
 
 
+static const char* COL_CMYK = "DeviceCMYK";
+static const char* COL_RGB = "DeviceRGB";
+static const char* COL_GRAY = "DeviceGray";
+
 
 #pragma pack(2)
 typedef struct _bitmap_file_header
@@ -35,7 +39,7 @@ typedef struct _bitmap_info_header
     int importantColors;
 } BitmapInfoHeader;
 
-static HPDF_STATUS LoadBmpData(HPDF_Dict image,  HPDF_Xref xref, HPDF_Stream bmp_data, HPDF_BOOL delayed_loading);
+static HPDF_STATUS LoadBmpData(HPDF_Dict image,  HPDF_Xref xref, HPDF_Stream bmp_data, int pixelDataOffset, HPDF_BOOL delayed_loading);
 
 #if 0
 cp_mat* init_cp_mat(unsigned int width, unsigned int height, unsigned int channel) {
@@ -164,7 +168,7 @@ HPDF_Image_LoadBmpImage(HPDF_MMgr        mmgr,
     if (ret != HPDF_OK)
         return NULL;
 
-    if (LoadBmpData(image, xref, bmp_data, delayed_loading) != HPDF_OK)
+    if (LoadBmpData(image, xref, bmp_data, bitmapFileHeader.pixelDataOffset, delayed_loading) != HPDF_OK)
         return NULL;
 
 
@@ -175,7 +179,7 @@ HPDF_Image_LoadBmpImage(HPDF_MMgr        mmgr,
 
 
 
-static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp_data, HPDF_BOOL delayed_loading) {
+static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp_data, int pixelDataOffset, HPDF_BOOL delayed_loading) {
     HPDF_STATUS ret = HPDF_OK;
     int bit_depth, color_type;
     unsigned char* buf = NULL, *data = NULL;
@@ -205,18 +209,45 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
 
     if (bitmapInfoHeader.bitsPerPixel == 1 || bitmapInfoHeader.bitsPerPixel == 8) {
         size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight;
-    }
-    else {
+        ret = HPDF_Dict_AddName(image, "ColorSpace", COL_GRAY);
+    } else if (bitmapInfoHeader.bitsPerPixel == 24) {
+        ret = HPDF_Dict_AddName(image, "ColorSpace", COL_RGB);
         size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight * (bitmapInfoHeader.bitsPerPixel/8);
+    } else if (bitmapInfoHeader.bitsPerPixel == 32) {
+        ret = HPDF_Dict_AddName(image, "ColorSpace", COL_CMYK);
+        size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight * (bitmapInfoHeader.bitsPerPixel / 8);
     }
 
+
+    data = malloc(sizeof(unsigned char) * size);
+
     if (bitmapInfoHeader.bitsPerPixel > 1) {
-        if (HPDF_Stream_WriteToStream(bmp_data, image->stream, 0, NULL) != HPDF_OK)
+        // 14: sizeof(BitmapFileHeader)
+        // sizeof(BitmapInfoHeader)
+        // xxx pixelDataOffset - 14 - sizeof(BitmapInfoHeader)
+        // read until pixelDataOffset
+        len = sizeof(unsigned char) * (pixelDataOffset - sizeof(BitmapFileHeader) - sizeof(BitmapInfoHeader));
+        buf = (unsigned char*)malloc(len);
+        ret = HPDF_Stream_Read(bmp_data, buf, &len);
+
+        ret = HPDF_Stream_Read(bmp_data, data, &size);
+
+        for (i = 0; i < 12; i++) {
+            for (j = 0; j < 12; j++) {
+                printf("%02X ", data[i * 12 + j]);
+            }
+            printf("\n");
+        }
+
+        printf("\n");
+        if (ret != HPDF_OK)
+            return NULL;
+        ret = HPDF_Stream_Write(image->stream, data, size);
+        if (ret != HPDF_OK)
             return NULL;
     }
     else { // 1bit
         buf = (unsigned char*)malloc(row_size);
-        data = malloc(sizeof(unsigned char) * bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight);
         for (i = 0; i < bitmapInfoHeader.imageHeight; i++) {
             ret = HPDF_Stream_Read(bmp_data, buf, &row_size);
             for (j = 0; j < bitmapInfoHeader.imageWidth; j++) {
@@ -226,10 +257,10 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
 
         if (HPDF_Stream_WriteToStream(bmp_data, image->stream, 0, NULL) != HPDF_OK)
             return NULL;
-        free(buf);
-        free(data);
+        
     }
-
+    free(buf);
+    free(data);
     
         // read grayscale images
 #if 0
