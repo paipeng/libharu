@@ -64,9 +64,16 @@ draw_image (HPDF_Doc     pdf,
     }
 
     /* Draw image to the canvas. */
-    HPDF_Page_DrawImage (page, image, x, y, HPDF_Image_GetWidth (image),
-                    HPDF_Image_GetHeight (image));
-
+    if (strstr(filename, ".bmp")) {
+        HPDF_Page_DrawImage(page, image, x, y, HPDF_Image_GetWidth(image)*72.0/600,
+            HPDF_Image_GetHeight(image)*72.0/600);
+    }
+    else {
+#if 0
+        HPDF_Page_DrawImage(page, image, x, y, HPDF_Image_GetWidth(image),
+            HPDF_Image_GetHeight(image));
+#endif
+    }
     /* Print the text. */
     HPDF_Page_BeginText (page);
     HPDF_Page_SetTextLeading (page, 16);
@@ -127,10 +134,18 @@ int main (int argc, char **argv)
     HPDF_Page_EndText (page);
 
     HPDF_Page_SetFontAndSize (page, font, 12);
-
+#if 1
     draw_image(pdf, "code.bmp", 300, HPDF_Page_GetHeight(page) - 550,
-        "code bmp");
+        "code gray bmp");
+#endif
+    draw_image(pdf, "code3.bmp", 100, HPDF_Page_GetHeight(page) - 550,
+        "code 1bit bmp");
 
+    draw_image(pdf, "code_rgb.bmp", 200, HPDF_Page_GetHeight(page) - 550,
+        "code rgb bmp");
+
+
+#if 0
     draw_image (pdf, "basn0g01.png", 100, HPDF_Page_GetHeight (page) - 150,
                 "1bit grayscale.");
     draw_image (pdf, "basn0g02.png", 200, HPDF_Page_GetHeight (page) - 150,
@@ -163,7 +178,7 @@ int main (int argc, char **argv)
                 "8bit alpha.");
     draw_image (pdf, "basn6a16.png", 200, HPDF_Page_GetHeight (page) - 550,
                 "16bit alpha.");
-
+#endif
     /* save the document to a file */
     HPDF_SaveToFile (pdf, fname);
 
