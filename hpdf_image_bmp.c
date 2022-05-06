@@ -170,14 +170,8 @@ HPDF_Image_LoadBmpImage(HPDF_MMgr        mmgr,
 
     if (LoadBmpData(image, xref, bmp_data, bitmapFileHeader.pixelDataOffset, delayed_loading) != HPDF_OK)
         return NULL;
-
-
-
-
     return image;
 }
-
-
 
 static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp_data, int pixelDataOffset, HPDF_BOOL delayed_loading) {
     HPDF_STATUS ret = HPDF_OK;
@@ -190,6 +184,7 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
     int padding = 0;
     char padding_buf[8];
     size_t read_size;
+    int pixelColorMap = 0;
 
     HPDF_PTRACE((" HPDF_Image_LoadBmpImage\n"));
 
@@ -216,25 +211,29 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
     } else if (bitmapInfoHeader.bitsPerPixel == 32) {
         ret = HPDF_Dict_AddName(image, "ColorSpace", COL_CMYK);
         size = bitmapInfoHeader.imageWidth * (bitmapInfoHeader.bitsPerPixel / 8) * bitmapInfoHeader.imageHeight;
+    } else {
+        size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight;
     }
 
-    // read header until pixelData
+    // 14: sizeof(BitmapFileHeader)
+    // sizeof(BitmapInfoHeader)
+    // xxx pixelDataOffset - 14 - sizeof(BitmapInfoHeader)
+    // read until pixelDataOffset
     len = sizeof(unsigned char) * (pixelDataOffset - sizeof(BitmapFileHeader) - sizeof(BitmapInfoHeader));
     buf = (unsigned char*)malloc(len);
     ret = HPDF_Stream_Read(bmp_data, buf, &len);
+
+    pixelColorMap = buf[len - 1];
     free(buf);
 
     data = malloc(sizeof(unsigned char) * size);
 
     if (bitmapInfoHeader.bitsPerPixel > 1) {
-        // 14: sizeof(BitmapFileHeader)
-        // sizeof(BitmapInfoHeader)
-        // xxx pixelDataOffset - 14 - sizeof(BitmapInfoHeader)
-        // read until pixelDataOffset
-
         len = bitmapInfoHeader.imageWidth * (bitmapInfoHeader.bitsPerPixel / 8);
         for (i = bitmapInfoHeader.imageHeight-1; i >=0 ; i--) {
             ret = HPDF_Stream_Read(bmp_data, &data[i*len], &len);
+            if (ret != HPDF_OK)
+                return NULL;
         }
 #if 1
         for (i = 0; i < 12; i++) {
@@ -245,22 +244,24 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
         }
 #endif
         printf("\n");
-        if (ret != HPDF_OK)
-            return NULL;
         ret = HPDF_Stream_Write(image->stream, data, size);
         if (ret != HPDF_OK)
             return NULL;
     }
     else { // 1bit
+                    // define row size for reading
+        row_size = 4 * ((bitmapInfoHeader.imageWidth * bitmapInfoHeader.bitsPerPixel + 31) / 32);
+        padding = row_size - bitmapInfoHeader.imageWidth;
+
         buf = (unsigned char*)malloc(row_size);
         for (i = 0; i < bitmapInfoHeader.imageHeight; i++) {
             ret = HPDF_Stream_Read(bmp_data, buf, &row_size);
             for (j = 0; j < bitmapInfoHeader.imageWidth; j++) {
-                data[(bitmapInfoHeader.imageHeight - i - 1) * bitmapInfoHeader.imageWidth + j] = (1 - ((buf[j / 8] >> (7 - j % 8)) & 0x01)) * 0xFF;
+                data[(bitmapInfoHeader.imageHeight - i - 1) * bitmapInfoHeader.imageWidth + j] = abs(pixelColorMap - ((buf[j / 8] >> (7 - j % 8)) & 0x01)) * 0xFF;
             }
         }
-
-        if (HPDF_Stream_WriteToStream(bmp_data, image->stream, 0, NULL) != HPDF_OK)
+        ret = HPDF_Stream_Write(image->stream, data, size);
+        if (ret != HPDF_OK)
             return NULL;
         
     }
