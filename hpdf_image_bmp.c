@@ -215,7 +215,7 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
         size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight * (bitmapInfoHeader.bitsPerPixel/8);
     } else if (bitmapInfoHeader.bitsPerPixel == 32) {
         ret = HPDF_Dict_AddName(image, "ColorSpace", COL_CMYK);
-        size = bitmapInfoHeader.imageWidth * bitmapInfoHeader.imageHeight * (bitmapInfoHeader.bitsPerPixel / 8);
+        size = bitmapInfoHeader.imageWidth * (bitmapInfoHeader.bitsPerPixel / 8) * bitmapInfoHeader.imageHeight;
     }
 
 
@@ -230,15 +230,18 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
         buf = (unsigned char*)malloc(len);
         ret = HPDF_Stream_Read(bmp_data, buf, &len);
 
-        ret = HPDF_Stream_Read(bmp_data, data, &size);
-
+        len = bitmapInfoHeader.imageWidth * (bitmapInfoHeader.bitsPerPixel / 8);
+        for (i = bitmapInfoHeader.imageHeight-1; i >=0 ; i--) {
+            ret = HPDF_Stream_Read(bmp_data, &data[i*len], &len);
+        }
+#if 1
         for (i = 0; i < 12; i++) {
             for (j = 0; j < 12; j++) {
                 printf("%02X ", data[i * 12 + j]);
             }
             printf("\n");
         }
-
+#endif
         printf("\n");
         if (ret != HPDF_OK)
             return NULL;
