@@ -235,7 +235,7 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
             if (ret != HPDF_OK)
                 return NULL;
         }
-#if 1
+#if 0
         for (i = 0; i < 12; i++) {
             for (j = 0; j < 12; j++) {
                 printf("%02X ", data[i * 12 + j]);
@@ -267,29 +267,5 @@ static HPDF_STATUS LoadBmpData(HPDF_Dict image, HPDF_Xref xref, HPDF_Stream  bmp
     }
     free(data);
     
-        // read grayscale images
-#if 0
-        else if (bitmapInfoHeader.bitsPerPixel == 1) {
-            printf("w: %d\n", row_size);
-            
-            for (i = 0; i < bitmapInfoHeader.imageHeight; i++) {
-                read_size = fread(&buf[0], 1, row_size, f);
-                for (j = 0; j < bitmapInfoHeader.imageWidth; j++) {
-                    mat->data[bitmapInfoHeader.imageHeight - i - 1][j] = (1 - ((buf[j / 8] >> (7 - j % 8)) & 0x01)) * 0xFF;
-                }
-            }
-            free(buf);
-        }
-    }
-
-
-    if (HPDF_Stream_WriteToStream(bmp_data, image->stream, 0, NULL) != HPDF_OK)
-        return NULL;
-
-    if (image->stream->size != size) {
-        HPDF_SetError(image->error, HPDF_INVALID_IMAGE, 0);
-        return NULL;
-    }
-#endif
     return ret;
 }
