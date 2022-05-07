@@ -41,6 +41,7 @@ draw_image (HPDF_Doc     pdf,
             const char  *filename,
             float        x,
             float        y,
+            float       dpi,
             const char  *text)
 {
 #ifdef __WIN32__
@@ -49,6 +50,7 @@ draw_image (HPDF_Doc     pdf,
     const char* FILE_SEPARATOR = "/";
 #endif
     char filename1[255];
+    char print_text[256];
 
     HPDF_Page page = HPDF_GetCurrentPage (pdf);
     HPDF_Image image;
@@ -63,10 +65,12 @@ draw_image (HPDF_Doc     pdf,
         image = HPDF_LoadPngImageFromFile(pdf, filename1);
     }
 
+
+    snprintf(print_text, sizeof(char) * 256, "%s (%.0f dpi)", text, dpi);
     /* Draw image to the canvas. */
     if (strstr(filename, ".bmp")) {
-        HPDF_Page_DrawImage(page, image, x, y, HPDF_Image_GetWidth(image)*72.0/600,
-            HPDF_Image_GetHeight(image)*72.0/600);
+        HPDF_Page_DrawImage(page, image, x, y, HPDF_Image_GetWidth(image)*72.0/dpi,
+            HPDF_Image_GetHeight(image)*72.0/dpi);
     }
     else {
 #if 0
@@ -79,7 +83,7 @@ draw_image (HPDF_Doc     pdf,
     HPDF_Page_SetTextLeading (page, 16);
     HPDF_Page_MoveTextPos (page, x, y);
     HPDF_Page_ShowTextNextLine (page, filename);
-    HPDF_Page_ShowTextNextLine (page, text);
+    HPDF_Page_ShowTextNextLine (page, print_text);
     HPDF_Page_EndText (page);
 }
 
@@ -91,6 +95,7 @@ int main (int argc, char **argv)
     HPDF_Page page;
     char fname[256];
     HPDF_Destination dst;
+    float dpi;
 
     strcpy (fname, argv[0]);
     strcat (fname, ".pdf");
@@ -130,21 +135,47 @@ int main (int argc, char **argv)
     HPDF_Page_BeginText (page);
     HPDF_Page_SetFontAndSize (page, font, 20);
     HPDF_Page_MoveTextPos (page, 220, HPDF_Page_GetHeight (page) - 70);
-    HPDF_Page_ShowText (page, "PngDemo");
+    HPDF_Page_ShowText (page, "Code Test");
     HPDF_Page_EndText (page);
 
     HPDF_Page_SetFontAndSize (page, font, 12);
-#if 1
-    draw_image(pdf, "code.bmp", 300, HPDF_Page_GetHeight(page) - 550,
-        "code gray bmp");
-#endif
-    draw_image(pdf, "code3.bmp", 100, HPDF_Page_GetHeight(page) - 550,
-        "code 1bit bmp");
 
-    draw_image(pdf, "code_rgb.bmp", 200, HPDF_Page_GetHeight(page) - 550,
-        "code rgb bmp");
+    dpi = 600;
+    draw_image(pdf, "code_1bit.bmp", 100, HPDF_Page_GetHeight(page) - 550, dpi,
+        "1bit");
+
+    draw_image(pdf, "code_rgb.bmp", 200, HPDF_Page_GetHeight(page) - 550, dpi,
+        "rgb");
+    draw_image(pdf, "code_gray.bmp", 300, HPDF_Page_GetHeight(page) - 550, dpi,
+        "gray");
+
+    dpi = 1200;
+    draw_image(pdf, "code_1bit_2x.bmp", 100, HPDF_Page_GetHeight(page) - 450, dpi,
+        "1bit 2x");
+
+    draw_image(pdf, "code_rgb_2x.bmp", 200, HPDF_Page_GetHeight(page) - 450, dpi,
+        "rgb 2x");
+    draw_image(pdf, "code_gray_2x.bmp", 300, HPDF_Page_GetHeight(page) - 450, dpi,
+        "gray 2x");
+
+    dpi = 600;
+    draw_image(pdf, "code_1bit_2x.bmp", 100, HPDF_Page_GetHeight(page) - 350, dpi,
+        "1bit 2x");
+
+    draw_image(pdf, "code_rgb_2x.bmp", 200, HPDF_Page_GetHeight(page) - 350, dpi,
+        "rgb 2x");
+    draw_image(pdf, "code_gray_2x.bmp", 300, HPDF_Page_GetHeight(page) - 350, dpi,
+        "gray 2x");
 
 
+    dpi = 300;
+    draw_image(pdf, "code_1bit.bmp", 100, HPDF_Page_GetHeight(page) - 250, dpi,
+        "1bit");
+
+    draw_image(pdf, "code_rgb.bmp", 200, HPDF_Page_GetHeight(page) - 250, dpi,
+        "rgb");
+    draw_image(pdf, "code_gray.bmp", 300, HPDF_Page_GetHeight(page) - 250, dpi,
+        "gray");
 #if 0
     draw_image (pdf, "basn0g01.png", 100, HPDF_Page_GetHeight (page) - 150,
                 "1bit grayscale.");
