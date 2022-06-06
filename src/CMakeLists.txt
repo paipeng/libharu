@@ -42,6 +42,7 @@ set(
   	hpdf_gstate.c
 	hpdf_image_ccitt.c
   	hpdf_image_png.c
+  	hpdf_image_bmp.c
   	hpdf_image.c
   	hpdf_info.c
   	hpdf_list.c
