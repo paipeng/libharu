@@ -87,3 +87,4 @@ demo/build/.vs/
 demo/build/x64/
 build/demo/encoding_list.dir/Release/
 demo/ttfont/FZQTJW.TTF
+build_mac
