@@ -16,6 +16,7 @@ set(
   	hpdf_destination.c
   	hpdf_dict.c
   	hpdf_doc_png.c
+  	hpdf_doc_bmp.c
   	hpdf_doc.c
   	hpdf_encoder_cns.c
   	hpdf_encoder_cnt.c
@@ -42,6 +43,7 @@ set(
   	hpdf_gstate.c
 	hpdf_image_ccitt.c
   	hpdf_image_png.c
+  	hpdf_image_bmp.c
   	hpdf_image.c
   	hpdf_info.c
   	hpdf_list.c

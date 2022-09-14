@@ -124,12 +124,12 @@ int main (int argc, char **argv)
     HPDF_UseCNTEncodings(pdf);
 #endif
 
-#if 0
+#if 1
     /* create default-font */
     HPDF_UseCNSFonts(pdf);
     HPDF_UseCNSEncodings(pdf);
-    //font = HPDF_GetFont (pdf, "SimSun", "GB-EUC-H");
-    font = HPDF_GetFont(pdf, "SimHei,BoldItalic", "GB-EUC-H");
+    font = HPDF_GetFont (pdf, "SimSun", "GB-EUC-H");
+    //font = HPDF_GetFont(pdf, "SimHei,BoldItalic", "GB-EUC-H");
 #else
     HPDF_UseCNSFonts(pdf);
     HPDF_UseCNSEncodings(pdf);
@@ -262,7 +262,7 @@ int main (int argc, char **argv)
                 "RenderingMode=PDF_FILL");
     HPDF_Page_SetTextRenderingMode (page, HPDF_FILL);
     HPDF_Page_BeginText (page);
-    HPDF_Page_TextOut (page, 60, ypos, "ABCabc123 ≈Ì≈»");
+    HPDF_Page_TextOut (page, 60, ypos, "ABCabc123 ");
     HPDF_Page_EndText (page);
 
     /* PDF_STROKE */
